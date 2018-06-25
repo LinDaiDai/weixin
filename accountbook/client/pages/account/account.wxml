@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="header">
+    <view class="headerTab">
+      <view class="headerItem {{_num==1?'active':''}}" data-num="1" bindtap="headClick">支出</view>
+      <view class="headerItem {{_num==2?'active':''}}" data-num="2" bindtap="headClick">收入</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="typeList clear">
+      <view class="typeItem" wx:for="{{iconfontList}}" wx:for-index="idx" wx:for-item="itemName" data-index="{{idx}}" bindtap="typeClick">
+        <view class="typeIconfont {{nowIndex==idx?'active':''}}">
+          <view class="iconfont {{itemName.class}}"></view>
+        </view>
+        <view class="typeLabel">{{itemName.label}}</view>
+      </view>
+    </view>
+  </view>
+</view>

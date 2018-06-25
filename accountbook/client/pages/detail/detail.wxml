@@ -1,0 +1,15 @@
+<view class="container">
+    <view class="header">
+        <view class="headerType">
+            <view class="pic iconfont {{substance.iconfontClass}}"></view>
+            <view class="name">{{substance.label}}</view>
+        </view>
+    </view>
+    <view class="content">
+        <view class="typeList clear">
+            <view class="typeItem">
+                
+            </view>
+        </view>
+    </view>
+</view>
