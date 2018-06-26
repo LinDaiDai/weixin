@@ -1,4 +1,5 @@
 var listInfo = require('../../utils/listInfo.js');
+var utils = require('../../utils/util');
 Page({
 
   /**
@@ -16,15 +17,40 @@ Page({
     console.log(options);
     let idx = Number(options.idx);
     let obj = listInfo.incomeList[idx];
+    console.log(new Date());
+    let nowDate = utils.dateToStr(new Date(), 'yyyy-MM-dd');
+    let week = utils.getDateWeekday(nowDate);
     let substance = {
       iconfontClass: obj.class,
-      label: obj.label
+      label: obj.label,
+      type: '支出',
+      amount: 300,
+      date: nowDate,
+      week: week,
+      remark: '我是备注'
     }
+    console.log(nowDate);
+    console.log(substance);
     this.setData({
       substance
     })
   },
-
+  bindKeyInput(e) {
+    let substance = this.data.substance;
+    substance.amount = e.detail.value;
+    this.setData({
+      substance
+    })
+  },
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    let substance = this.data.substance;
+    substance.date = e.detail.value;
+    substance.week = utils.getDateWeekday(substance.date);
+    this.setData({
+      substance
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

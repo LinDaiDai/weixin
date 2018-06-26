@@ -7,8 +7,31 @@
     </view>
     <view class="content">
         <view class="typeList clear">
-            <view class="typeItem">
+            <!-- <view class="typeItem">
                 
+            </view> -->
+            <view class="flex-wrp" style="height: 300px;flex-direction:column;">
+                <view class="flex-item typeItem">
+                    <view class="titile">类型</view>
+                    {{substance.type}}
+                </view>
+                <view class="flex-item typeItem">
+                    <view class="titile">金额</view>
+                    <input class="keyInput" value="{{substance.amount}}"  adjust-position="{{false}}" bindinput="bindKeyInput" placeholder="请输入金额" />
+                    <!-- {{substance.amount}} -->
+                </view>
+                <view class="flex-item typeItem">
+                    <view class="titile">日期</view>
+                    <picker mode="date" value="{{substance.date}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+                        <view class="keyInput">{{substance.date}}  {{substance.week}}</view>
+                    </picker>
+                    <!-- {{substance.date}} -->
+                </view>
+                <view class="flex-item typeItem">
+                    <view class="titile">备注</view>
+                    <textarea placeholder="备注" value="" name="textarea" />
+                    {{substance.remark}}
+                </view>
             </view>
         </view>
     </view>
