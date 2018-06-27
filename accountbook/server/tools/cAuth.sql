@@ -35,3 +35,16 @@ CREATE TABLE `cSessionInfo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会话管理用户信息';
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `accountInfo`;
+CREATE TABLE `accountInfo` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL auto_increment COMMENT '商品名称',
+  `bill_class` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bill_label` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amt_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `amount` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remark` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='账单列表';
+

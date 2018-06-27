@@ -6,7 +6,7 @@ const CONF = {
     appId: 'wx9c0c1b49cda09e72',
 
     // 微信小程序 App Secret
-    appSecret: '',
+    appSecret: '8433525e257f8e7d98357f17e541281f',
 
     // 是否使用腾讯云代理登录小程序
     useQcloudLogin: true,
@@ -36,7 +36,9 @@ const CONF = {
         // 文件夹
         uploadFolder: ''
     },
-
+    qcloudAppId: '1256114407',
+    qcloudSecretId: 'AKIDQoJwqi6e5b33xDSHb6bWrW4W60rEk2ml',
+    qcloudSecretKey: 'nlIrv7KTREA0pmCrYDRuNjTVxJjyBRYU',
     // 微信登录态有效期
     wxLoginExpires: 7200,
     wxMessageToken: 'abcdefgh'

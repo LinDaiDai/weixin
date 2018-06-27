@@ -40,3 +40,9 @@ DB.raw(content).then(res => {
 }, err => {
     throw new Error(err)
 })
+DB.schema.withSchema('public').createTable('users', function (table) {
+    table.increments();
+    table.string('name');
+    table.integer('age');
+    table.timestamps();
+}).toString()
