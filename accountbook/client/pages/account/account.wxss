@@ -34,7 +34,7 @@
 .typeList{
   padding: 60rpx;
   box-sizing: border-box;
-  /* margin-top: 100rpx; */
+  padding-bottom:160rpx;
 }
 .typeItem{
   width:140rpx;

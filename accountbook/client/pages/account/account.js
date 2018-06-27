@@ -31,11 +31,12 @@ Page({
   typeClick: function (e) {
     console.log(e);
     let nowIndex = e.currentTarget.dataset.index;
+    let amtType = this.data._num;
     this.setData({
       nowIndex
     })
     wx.navigateTo({
-      url: `../detail/detail?idx=${nowIndex}`,
+      url: `../detail/detail?idx=${nowIndex}&amtType=${amtType}`,
     })
   },
   /**

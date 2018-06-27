@@ -8,8 +8,24 @@
 .content{
   top: 220rpx;
 }
+.footer .delete{
+    margin:0 30rpx;
+    color: #fff;
+}
+/* .footerItem{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    text-align: center;
+}
+.footerItem:first-child{
+    border-right: 1px solid #ccc;
+} */
 .typeList{
-  height:100%;
+  /* height:100%; */
   padding:20rpx;
 }
 .typeItem{
@@ -21,14 +37,19 @@
 }
 .typeItem .titile{
     color: #ccc;
-    width: 80rpx;
+    width: 10%;
     float: left;
 }
 .typeItem .keyInput{
     float: left;
     height: 98rpx;
-    width: 600rpx;
+    width:90%;
     line-height: 98rpx;
+}
+.typeItem textarea{
+    float: left;
+    width: 90%;
+    height: 150rpx;
 }
 .headerType{
     height: 100%;

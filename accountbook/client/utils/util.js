@@ -60,7 +60,7 @@ var showSuccess = text => wx.showToast({
 })
 
 // 显示失败提示
-var showModel = (title, content) => {
+var showError = (title, content) => {
     wx.hideToast();
 
     wx.showModal({
@@ -70,4 +70,20 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, dateToStr, getDateWeekday }
+var grow = (obj) => {
+    wx.showModal({
+        title: obj.title,
+        content: obj.content,
+        confirmColor: '#00BFFF',
+        success: res => {
+            if (res.confirm) {
+                obj.success();
+            } else if (res.cancel) {
+                console.log('用户点击取消')
+            }
+        }
+    })
+}
+
+
+module.exports = { formatTime, showBusy, showSuccess, showError, grow,dateToStr, getDateWeekday }

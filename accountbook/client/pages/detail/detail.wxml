@@ -7,13 +7,10 @@
     </view>
     <view class="content">
         <view class="typeList clear">
-            <!-- <view class="typeItem">
-                
-            </view> -->
             <view class="flex-wrp" style="height: 300px;flex-direction:column;">
                 <view class="flex-item typeItem">
                     <view class="titile">类型</view>
-                    {{substance.type}}
+                    {{substance.typeStr}}
                 </view>
                 <view class="flex-item typeItem">
                     <view class="titile">金额</view>
@@ -27,12 +24,15 @@
                     </picker>
                     <!-- {{substance.date}} -->
                 </view>
-                <view class="flex-item typeItem">
+                <view class="flex-item typeItem clear" style="height: auto;">
                     <view class="titile">备注</view>
-                    <textarea placeholder="备注" value="" name="textarea" />
-                    {{substance.remark}}
+                    <textarea placeholder="备注"  fixed="{{true}}" value="{{substance.remark}}" name="textarea" />
+                    <!-- {{substance.remark}} -->
                 </view>
             </view>
         </view>
+    </view>
+    <view class="footer">
+        <button style="background-color:{{routeType=='添加'?'#00BFFF':'#E64340'}}" class="delete" bindtap="clickThis">{{routeType}}</button>
     </view>
 </view>
