@@ -1,6 +1,7 @@
 var listInfo = require('../../utils/listInfo.js');
 var utils = require('../../utils/util');
 var config = require('../../config')
+var app = getApp();
 Page({
 
   /**
@@ -33,8 +34,8 @@ Page({
     let substance = {
       iconfontClass: obj.class,
       label: obj.label,
-      type: amtType,
-      typeStr: amtType == 1 ? '支出' : '收入',
+      amtType: amtType,
+      amtTypeStr: amtType == 1 ? '支出' : '收入',
       amount: 300,
       date: nowDate,
       week: week,
@@ -63,10 +64,17 @@ Page({
     })
   },
   clickThis() {
+    let substance = this.data.substance;
+    console.log(app.globalData.userInfo);
+    let openId = app.globalData.userInfo.openId;
     if (this.data.routeType=='添加') {
       var options = {
-        url: config.service.demoUrl,
-        login: true,
+        url: config.service.accountUrl,
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'amtType': substance.amtType
+        },
         success(result) {
           utils.showSuccess('添加成功');
           console.log('request success', result)

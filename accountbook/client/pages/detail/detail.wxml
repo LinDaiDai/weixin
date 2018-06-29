@@ -10,7 +10,7 @@
             <view class="flex-wrp" style="height: 300px;flex-direction:column;">
                 <view class="flex-item typeItem">
                     <view class="titile">类型</view>
-                    {{substance.typeStr}}
+                    {{substance.amtTypeStr}}
                 </view>
                 <view class="flex-item typeItem">
                     <view class="titile">金额</view>

@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://glp29a9f.qcloud.la';
+var host = 'http://localhost:5757';
 
 var config = {
 
@@ -24,7 +24,10 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
 
         //获取demo接口
-        demoUrl: `${host}/weapp/demo`
+        demoUrl: `${host}/weapp/demo`,
+
+        //添加账单接口
+        accountUrl: `${host}/weapp/account`
     }
 };
 
