@@ -20,7 +20,7 @@ Page({
     console.log(options);
     let routes = getCurrentPages();//[e, e];
     let beforeRoute = routes[0]['route'];
-    let routeType = beforeRoute === 'pages/account/account' ? '添加' : '删除'; 
+    let routeType = beforeRoute === 'pages/account/account' ? '添加' : '确定'; 
     let amtType = Number(options.amtType);
     let idx = Number(options.idx);
     let obj = {};
@@ -32,12 +32,12 @@ Page({
     let nowDate = utils.dateToStr(new Date(), 'yyyy-MM-dd');
     let week = utils.getDateWeekday(nowDate);
     let substance = {
-      iconfontClass: obj.class,
-      label: obj.label,
+      billClass: obj.class,
+      billLabel: obj.label,
       amtType: amtType,
       amtTypeStr: amtType == 1 ? '支出' : '收入',
       amount: 300,
-      date: nowDate,
+      createTime: nowDate,
       week: week,
       remark: '我是备注'
     }
@@ -57,46 +57,81 @@ Page({
   bindDateChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     let substance = this.data.substance;
-    substance.date = e.detail.value;
-    substance.week = utils.getDateWeekday(substance.date);
+    substance.createTime = e.detail.value;
+    substance.week = utils.getDateWeekday(substance.createTime);
     this.setData({
       substance
     })
   },
-  clickThis() {
+  clickThis() {//添加/编辑账单
     let substance = this.data.substance;
     console.log(app.globalData.userInfo);
     let openId = app.globalData.userInfo.openId;
-    if (this.data.routeType=='添加') {
-      var options = {
-        url: config.service.accountUrl,
-        method: 'POST',
-        data: {
-          'openId': openId,
-          'amtType': substance.amtType
-        },
-        success(result) {
-          utils.showSuccess('添加成功');
-          console.log('request success', result)
-        },
-        fail(error) {
-          util.showModel('请求失败', error);
-          console.log('request fail', error);
-        }
-      }
-      wx.request(options)
+    let param = Object.assign({}, substance, { openId: openId });
+    let url = "";
+    let routeType = this.data.routeType;
+
+    if (routeType ==='添加') {
+      url = config.service.addAccountUrl;
     } else {
-      utils.grow({
-        title: '提示',
-        content: '确定要删除此项吗？',
-        success: () => {
-          this.sureDelete();
-        }
-      })
+      url = config.service.editAccountUrl;      
     }
+    
+    let options = {
+      url: url,
+      method: 'POST',
+      data: param,
+      success(result) {
+        if (result['data']['success']) {
+          let msg = result['data']['message'];
+          utils.showSuccess(msg);
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1000);
+        }
+      },
+      fail(error) {
+        util.showModel('请求失败', error);
+      }
+    }
+    wx.request(options)
+  },
+  deleteThis() {//删除账单
+    console.log(this.data.substance);
+    utils.grow({
+      title: '提示',
+      content: '确定要删除此项吗？',
+      success: () => {
+        this.sureDelete();
+      }
+    })
   },
   sureDelete() {
-    console.log(this.data.substance);
+    let param = {
+      'billId': this.data.substance['bill_id'],
+      'openId': this.data.substance['open_id']
+    }
+    let options = {
+      url: config.service.deleteAccount,
+      method: 'POST',
+      data: param,
+      success(result) {
+        if (result['success']) {
+          utils.showSuccess('删除成功！');
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1000);
+        }
+      },
+      fail(error) {
+        util.showModel('删除失败！', error);
+      }
+    }
+    wx.request(options)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

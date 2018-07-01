@@ -27,7 +27,13 @@ var config = {
         demoUrl: `${host}/weapp/demo`,
 
         //添加账单接口
-        accountUrl: `${host}/weapp/account`
+        addAccountUrl: `${host}/weapp/addAccount`,
+
+        //编辑账单接口
+        editAccountUrl: `${host}/weapp/editAccount`,
+
+        //删除账单接口
+        deleteAccount: `${host}/weapp/deleteAccount`
     }
 };
 

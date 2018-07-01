@@ -1,8 +1,8 @@
 <view class="container">
     <view class="header">
         <view class="headerType">
-            <view class="pic iconfont {{substance.iconfontClass}}"></view>
-            <view class="name">{{substance.label}}</view>
+            <view class="pic iconfont {{substance.billClass}}"></view>
+            <view class="name">{{substance.billLabel}}</view>
         </view>
     </view>
     <view class="content">
@@ -19,10 +19,10 @@
                 </view>
                 <view class="flex-item typeItem">
                     <view class="titile">日期</view>
-                    <picker mode="date" value="{{substance.date}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
-                        <view class="keyInput">{{substance.date}}  {{substance.week}}</view>
+                    <picker mode="date" value="{{substance.createTime}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+                        <view class="keyInput">{{substance.createTime}}  {{substance.week}}</view>
                     </picker>
-                    <!-- {{substance.date}} -->
+                    <!-- {{substance.createTime}} -->
                 </view>
                 <view class="flex-item typeItem clear" style="height: auto;">
                     <view class="titile">备注</view>
@@ -32,7 +32,15 @@
             </view>
         </view>
     </view>
-    <view class="footer">
-        <button style="background-color:{{routeType=='添加'?'#00BFFF':'#E64340'}}" class="delete" bindtap="clickThis">{{routeType}}</button>
+    <view class="footer" wx:if="routeType==='添加'">
+        <button style="background-color: #00BFFF" class="add" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
+    </view>
+    <view class="footer" wx:else>
+        <view class="footerItem">
+            <button style="background-color: #00BFFF" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
+        </view>
+        <view class="footerItem">
+            <button type="warn" hover-class="button-hover" bindtap="deleteThis">删除</button>
+        </view>
     </view>
 </view>

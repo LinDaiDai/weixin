@@ -8,22 +8,21 @@
 .content{
   top: 220rpx;
 }
-.footer .delete{
+.footer .add{
     margin:0 30rpx;
     color: #fff;
 }
-/* .footerItem{
+.footerItem{
     float: left;
     width: 50%;
     box-sizing: border-box;
-    height: 60rpx;
-    line-height: 60rpx;
     font-size: 26rpx;
     text-align: center;
 }
-.footerItem:first-child{
-    border-right: 1px solid #ccc;
-} */
+.footerItem button{
+    color: #fff;
+    width: 90%;
+}
 .typeList{
   /* height:100%; */
   padding:20rpx;
