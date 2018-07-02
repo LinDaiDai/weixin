@@ -1,6 +1,40 @@
 <!-- index.wxml -->
 <view class="container">
     <view class="header">
-        <view class="sum"></view>
+        <view class="surplus font_50">{{surplus}}</view>
+        <picker mode="date"  fields="month" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+            <view class="date">{{searchYear}}年{{searchMonth}}月  资金结余</view>
+        </picker>
+        <view class="headerList clear">
+            <view class="headerItem fl">
+                <view class="unit font_40">{{monthIncome}}</view>
+                <view class="unit">本月收入</view>
+            </view>
+            <view class="headerItem fl">
+                <view class="unit font_40">{{monthExpend}}</view>
+                <view class="unit">本月支出</view>
+            </view>
+        </view>
+    </view>
+    <view class="content">
+        <view class="accountUl clear">
+            <view class="accountList clear fl">
+                <view class="createTime font_30 fl clear">
+                    <view class="createTimeItem  text_left fl">07月02日 星期一</view>
+                    <view class="createTimeItem text_right fl">收入：0 支出620</view>
+                </view>
+                <view class="accountItem fl clear">
+                    <view class="accountLeft pos_rel fl">
+                        <view class="typeIconfont pos_abs">
+                            <view class="iconfont"></view>
+                        </view>
+                    </view>
+                    <view class="accountRight clear">
+                        <view class="typeLabel font_30 fl">上课</view>
+                        <view class="amount font_40 fr font_w_700">-500</view>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

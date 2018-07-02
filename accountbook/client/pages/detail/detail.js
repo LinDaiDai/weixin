@@ -114,7 +114,7 @@ Page({
       'openId': this.data.substance['open_id']
     }
     let options = {
-      url: config.service.deleteAccount,
+      url: config.service.deleteAccountUrl,
       method: 'POST',
       data: param,
       success(result) {

@@ -5,6 +5,100 @@ page {
     flex-direction: column;
     justify-content: flex-start;
 }
+.container{
+  position: relative;
+  height: 100%;
+}
 .header{
-    height: 200rpx;
+    display: block;
+    height: 360rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 30rpx;
+}
+.surplus{
+    height: 144rpx;
+    line-height: 144rpx;
+}
+.date{
+    height: 50rpx;
+    display: inline-block;
+    padding: 0 20rpx;
+    border: 2rpx solid #fff;
+    border-radius: 36rpx;
+    box-sizing: border-box;
+    line-height: 40rpx;
+    font-size: 24rpx;
+}
+.headerList{
+    height: 144rpx;
+    width: 100%;
+    margin-top:22rpx;
+}
+.headerItem{
+    width: 50%;
+    height: 100%;
+}
+.unit{
+    height:72rpx;
+    width:100%;
+    line-height:72rpx;
+}
+.content{
+    top: 360rpx;
+}
+.accountUl{
+    width: 100%;
+}
+.accountList{
+    width: 100%;
+}
+.createTime{
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #eee;
+    color: #bbb;
+    padding:0 10rpx;
+    box-sizing:border-box;
+}
+.createTimeItem{
+    width: 50%;
+    height: 100%;
+}
+.accountItem{
+    width: 100%;
+    height: 110rpx;
+    line-height: 110rpx;
+    color: #333;
+    overflow-x:hidden;
+}
+.accountLeft{
+    height: 110rpx;
+    width: 110rpx;
+    text-align: center;
+}
+.typeIconfont{
+    height: 90rpx;
+    width: 90rpx;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#eee;
+    border-radius:50%;
+    line-height: 90rpx;
+    display: inline-block;
+}
+.typeIconfont .iconfont{
+    color: #8a8a8a;
+}
+.accountRight{
+    width: 100%;
+    height: 110rpx;
+    line-height: 110rpx;
+    border-bottom: 2rpx solid #eee;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+    margin-left:110rpx;
+    padding-right:120rpx;
 }

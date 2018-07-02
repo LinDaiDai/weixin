@@ -46,6 +46,16 @@ const getDateWeekday = (activity_time) => {
     var week = `星期${Week[nowDayOfWeek]}`;
     return week;
 }
+const getMonth = (_dt) => {
+    _dt = new Date(_dt);
+    var _mm = _dt.getMonth() + 1;
+    return _mm;
+}
+const getYear = (_dt) => {
+    _dt = new Date(_dt);
+    var _yyyy = _dt.getFullYear();
+    return _yyyy;
+}
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
     title: text,
@@ -86,4 +96,4 @@ var grow = (obj) => {
 }
 
 
-module.exports = { formatTime, showBusy, showSuccess, showError, grow,dateToStr, getDateWeekday }
+module.exports = { formatTime, showBusy, showSuccess, showError, grow, dateToStr, getDateWeekday, getMonth, getYear }
