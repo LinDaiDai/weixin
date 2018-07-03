@@ -89,10 +89,27 @@ Page({
             url: config.service.accountListUrl,
             method: 'POST',
             data: param,
-            success: function(res) {
+            success: res => {
                 console.log(res);
+                if (res && res['data']) {
+                    let accountList = res['data']['dateList'];
+                    if (accountList.length > 0) {
+                        // accountList.forEach(ele => {
+                            
+                        // })   
+                    }
+                    let surplus = res['data']['surplus'],
+                        monthIncome = res['data']['monthIncome'],
+                        monthExpend = res['data']['monthExpend'];
+                    this.setData({
+                        accountList,
+                        surplus,
+                        monthIncome,
+                        monthExpend
+                    })
+                }
             },
-            fail: function(error) {
+            fail: error => {
                 console.log(error);
             }
         }

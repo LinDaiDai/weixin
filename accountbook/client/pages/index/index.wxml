@@ -18,20 +18,20 @@
     </view>
     <view class="content">
         <view class="accountUl clear">
-            <view class="accountList clear fl">
+            <view class="accountList clear fl" wx:for="{{accountList}}" wx:key="{{dataItem.billId}}" wx:for-item="dataItem" wx:for-index="idx">
                 <view class="createTime font_30 fl clear">
-                    <view class="createTimeItem  text_left fl">07月02日 星期一</view>
+                    <view class="createTimeItem  text_left fl">{{dataItem.month}}月{{dataItem.day}}日 {{dataItem.week}}</view>
                     <view class="createTimeItem text_right fl">收入：0 支出620</view>
                 </view>
-                <view class="accountItem fl clear">
+                <view class="accountItem fl clear" wx:for="{{dataItem.list}}" wx:for-item="billItem">
                     <view class="accountLeft pos_rel fl">
                         <view class="typeIconfont pos_abs">
-                            <view class="iconfont"></view>
+                            <view class="iconfont {{billItem.billClass}}"></view>
                         </view>
                     </view>
                     <view class="accountRight clear">
-                        <view class="typeLabel font_30 fl">上课</view>
-                        <view class="amount font_40 fr font_w_700">-500</view>
+                        <view class="typeLabel font_30 fl">{{billItem.billLabel}}</view>
+                        <view class="amount font_40 fr font_w_700">{{billItem.amount}}</view>
                     </view>
                 </view>
             </view>
