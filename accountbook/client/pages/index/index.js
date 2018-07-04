@@ -63,7 +63,7 @@ Page({
                         },
 
                         fail(error) {
-                            util.showModel('请求失败', error)
+                            util.showError('请求失败', error)
                             console.log('request fail', error)
                         }
                     })
@@ -71,7 +71,7 @@ Page({
             },
 
             fail(error) {
-                util.showModel('登录失败', error)
+                util.showError('登录失败', error)
                 console.log('登录失败', error)
             }
         })

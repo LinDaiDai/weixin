@@ -7,11 +7,11 @@
         </picker>
         <view class="headerList clear">
             <view class="headerItem fl">
-                <view class="unit font_40">{{monthIncome}}</view>
+                <view class="unit font_40">{{monthExpend}}</view>
                 <view class="unit">本月收入</view>
             </view>
             <view class="headerItem fl">
-                <view class="unit font_40">{{monthExpend}}</view>
+                <view class="unit font_40">{{monthIncome}}</view>
                 <view class="unit">本月支出</view>
             </view>
         </view>
@@ -21,7 +21,7 @@
             <view class="accountList clear fl" wx:for="{{accountList}}" wx:key="{{dataItem.billId}}" wx:for-item="dataItem" wx:for-index="idx">
                 <view class="createTime font_30 fl clear">
                     <view class="createTimeItem  text_left fl">{{dataItem.month}}月{{dataItem.day}}日 {{dataItem.week}}</view>
-                    <view class="createTimeItem text_right fl">收入：0 支出620</view>
+                    <view class="createTimeItem text_right fl">收入{{dataItem.dayExpend}} 支出{{dataItem.dayIncome}}</view>
                 </view>
                 <view class="accountItem fl clear" wx:for="{{dataItem.list}}" wx:for-item="billItem">
                     <view class="accountLeft pos_rel fl">

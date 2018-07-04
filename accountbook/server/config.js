@@ -20,9 +20,10 @@ const CONF = {
         host: 'localhost',
         port: 3306,
         user: 'root',
-        db: 'cAuth',
-        pass: 'wx9c0c1b49cda09e72',
-        char: 'utf8mb4'
+        db: 'lindaidai',
+        pass: '123456',
+        char: 'utf8mb4',
+        multipleStatements: true
     },
 
     cos: {
@@ -36,6 +37,9 @@ const CONF = {
         // 文件夹
         uploadFolder: ''
     },
+    tunnelServerUrl: '',
+    tunnelSignatureKey: '',
+    serverHost: 'localhost',
     qcloudAppId: '1256114407',
     qcloudSecretId: 'AKIDQoJwqi6e5b33xDSHb6bWrW4W60rEk2ml',
     qcloudSecretKey: 'nlIrv7KTREA0pmCrYDRuNjTVxJjyBRYU',

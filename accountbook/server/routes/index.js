@@ -33,4 +33,12 @@ router.get('/message', controllers.message.get)
 router.post('/message', controllers.message.post)
 
 router.get('/demo', controllers.demo)
+
+router.post('/accountList', controllers.account.accountList)
+
+router.post('/addAccount', controllers.account.addAccount)
+
+router.post('/editAccount', controllers.account.editAccount)
+
+router.post('/deleteAccount', controllers.account.deleteAccount)
 module.exports = router

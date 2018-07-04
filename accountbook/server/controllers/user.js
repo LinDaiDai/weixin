@@ -8,4 +8,5 @@ module.exports = async (ctx, next) => {
     } else {
         ctx.state.code = -1
     }
+    console.log(ctx.state.$wxInfo)
 }
