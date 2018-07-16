@@ -19,28 +19,39 @@ Page({
   onLoad: function (options) {
     console.log(options);
     let routes = getCurrentPages();//[e, e];
-    let beforeRoute = routes[0]['route'];
-    let routeType = beforeRoute === 'pages/account/account' ? '添加' : '确定'; 
-    let amtType = Number(options.amtType);
-    let idx = Number(options.idx);
-    let obj = {};
-    if (amtType == 1) {
-      obj = listInfo.incomeList[idx];
+    let beforeRoute = routes[0]['route'];//获取跳转过来的路径
+    let routeType = beforeRoute === 'pages/account/account' ? '添加' : '确定';
+
+    let amtType,
+        idx,
+        obj = {},
+        substance = {};
+    if (routeType == '添加') {
+      amtType = Number(options.amtType);
+      idx = Number(options.idx);
+      var nowDate = utils.dateToStr(new Date(), 'yyyy-MM-dd');
+      var week = utils.getDateWeekday(nowDate);
+
+      if (amtType == 1) {
+        obj = listInfo.incomeList[idx];
+      } else {
+        obj = listInfo.expendList[idx];
+      }
+
+      substance = {
+        billClass: obj.class,
+        billLabel: obj.label,
+        amtType: amtType,
+        amtTypeStr: amtType == 1 ? '支出' : '收入',
+        amount: '',
+        createTime: nowDate,
+        week: week,
+        remark: ''
+      }
     } else {
-      obj = listInfo.expendList[idx];
+      substance = JSON.parse(options.ele);
     }
-    let nowDate = utils.dateToStr(new Date(), 'yyyy-MM-dd');
-    let week = utils.getDateWeekday(nowDate);
-    let substance = {
-      billClass: obj.class,
-      billLabel: obj.label,
-      amtType: amtType,
-      amtTypeStr: amtType == 1 ? '支出' : '收入',
-      amount: 300,
-      createTime: nowDate,
-      week: week,
-      remark: '我是备注'
-    }
+
     console.log(substance);
     this.setData({
       substance,

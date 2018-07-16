@@ -115,7 +115,7 @@ Page({
         }
         wx.request(options);
     },
-    bindDateChange(e) {
+    bindDateChange(e) {//改变年月
         console.log('picker发送选择改变，携带值为', e.detail.value);
         let nowDate = e.detail.value,
             searchYear = util.getYear(nowDate),
@@ -125,5 +125,12 @@ Page({
             searchMonth
         })
         this.getAccountList();        
+    },
+    goDetail(e) {//跳转详情页
+        console.log(e);
+        let ele = JSON.stringify(e.currentTarget.dataset.ele);
+        wx.navigateTo({
+            url: `../detail/detail?ele=${ele}`,
+        })
     }
 })

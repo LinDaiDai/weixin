@@ -26,7 +26,7 @@
                 </view>
                 <view class="flex-item typeItem clear" style="height: auto;">
                     <view class="titile">备注</view>
-                    <textarea placeholder="备注"  fixed="{{true}}" value="{{substance.remark}}" name="textarea" />
+                    <textarea fixed="{{true}}" value="{{substance.remark}}" name="textarea" />
                     <!-- {{substance.remark}} -->
                 </view>
             </view>
@@ -35,7 +35,7 @@
     <view class="footer" wx:if="routeType==='添加'">
         <button style="background-color: #00BFFF" class="add" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
     </view>
-    <view class="footer" wx:else>
+    <view class="footer" wx:if="routeType='确定'">
         <view class="footerItem">
             <button style="background-color: #00BFFF" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
         </view>

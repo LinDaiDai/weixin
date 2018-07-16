@@ -49,6 +49,7 @@ page {
 }
 .accountUl{
     width: 100%;
+    padding-bottom:360rpx;
 }
 .accountList{
     width: 100%;
@@ -73,24 +74,31 @@ page {
     color: #333;
     overflow-x:hidden;
 }
+.accountItem.active{
+    background-color:#fff;
+}
 .accountLeft{
     height: 110rpx;
     width: 110rpx;
     text-align: center;
 }
+.typeLabel{
+    color: #8a8a8a;
+}
 .typeIconfont{
-    height: 90rpx;
-    width: 90rpx;
+    height: 70rpx;
+    width: 70rpx;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color:#eee;
+    background-color:#00BFFF;
     border-radius:50%;
-    line-height: 90rpx;
+    line-height: 70rpx;
     display: inline-block;
 }
 .typeIconfont .iconfont{
-    color: #8a8a8a;
+    color: #fff;
+    font-size:50rpx;
 }
 .accountRight{
     width: 100%;

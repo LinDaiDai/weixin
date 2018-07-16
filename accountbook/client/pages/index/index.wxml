@@ -23,7 +23,8 @@
                     <view class="createTimeItem  text_left fl">{{dataItem.month}}月{{dataItem.day}}日 {{dataItem.week}}</view>
                     <view class="createTimeItem text_right fl">收入{{dataItem.dayExpend}} 支出{{dataItem.dayIncome}}</view>
                 </view>
-                <view class="accountItem fl clear" wx:for="{{dataItem.list}}" wx:for-item="billItem">
+                <view class="accountItem fl clear" wx:for="{{dataItem.list}}"
+                 wx:for-item="billItem" hover-class="active" bindtap="goDetail" data-ele="{{billItem}}">
                     <view class="accountLeft pos_rel fl">
                         <view class="typeIconfont pos_abs">
                             <view class="iconfont {{billItem.billClass}}"></view>
