@@ -116,7 +116,6 @@ Page({
         wx.request(options);
     },
     bindDateChange(e) {//改变年月
-        console.log('picker发送选择改变，携带值为', e.detail.value);
         let nowDate = e.detail.value,
             searchYear = util.getYear(nowDate),
             searchMonth = util.getMonth(nowDate);
