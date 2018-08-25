@@ -19,6 +19,10 @@ Page({
     onLoad: function(options) {
         this.login();
     },
+    onShow: function() {
+        console.log('onShow')
+        this.getAccountList();
+    },
     init() {
         let nowDate = new Date(),
             searchYear = util.getYear(nowDate),

@@ -10,7 +10,9 @@ Page({
   data: {
     substance: {},
     routeType: '',//跳转类型
-    iconfontList: []
+    iconfontList: [],
+    amtTypeList: ['支出', '收入'],
+    amtTypeIndex: 0//0支出 1收入
   },
 
   /**
@@ -21,7 +23,7 @@ Page({
     let routes = getCurrentPages();//[e, e];
     let beforeRoute = routes[0]['route'];//获取跳转过来的路径
     let routeType = beforeRoute === 'pages/account/account' ? '添加' : '确定';
-
+    console.log(beforeRoute);
     let amtType,
         idx,
         obj = {},
@@ -50,12 +52,28 @@ Page({
       }
     } else {
       substance = JSON.parse(options.ele);
+      substance.amount = substance.amount ? Math.abs(substance.amount) : 0;
+      amtType = substance.amtType;
     }
-
+    console.log(substance);
+    let amtTypeIndex = amtType - 1;
+    this.setData({
+      substance,
+      routeType,
+      amtTypeIndex
+    })
+  },
+  bindPickerChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    let index = Number(e.detail.value);
+    let substance = this.data.substance;
+    let amtTypeIndex = index;
+    substance.amtType = index + 1;
+    substance.amtTypeStr = this.data.amtTypeList[index];
     console.log(substance);
     this.setData({
       substance,
-      routeType
+      amtTypeIndex
     })
   },
   bindKeyInput(e) {
@@ -65,11 +83,21 @@ Page({
       substance
     })
   },
+  bindRemark(e) {
+    let substance = this.data.substance;
+    substance.remark = e.detail.value;
+    this.setData({
+      substance
+    })
+  },
   bindDateChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     let substance = this.data.substance;
     substance.createTime = e.detail.value;
     substance.week = utils.getDateWeekday(substance.createTime);
+    substance.year = utils.getYear(substance.createTime);
+    substance.month = utils.getMonth(substance.createTime);
+    console.log(substance);
     this.setData({
       substance
     })
@@ -121,25 +149,27 @@ Page({
   },
   sureDelete() {
     let param = {
-      'billId': this.data.substance['bill_id'],
-      'openId': this.data.substance['open_id']
+      'billId': this.data.substance['billId'],
+      'openId': app.globalData.userInfo.openId
     }
     let options = {
       url: config.service.deleteAccountUrl,
       method: 'POST',
       data: param,
       success(result) {
-        if (result['success']) {
+        if (result['data']['success']) {
           utils.showSuccess('删除成功！');
           setTimeout(() => {
             wx.navigateBack({
               delta: 1
             })
           }, 1000);
+        } else {
+          utils.showError('删除失败！', result['data']['message']);
         }
       },
       fail(error) {
-        util.showModel('删除失败！', error);
+        util.showError('删除失败！', error);
       }
     }
     wx.request(options)

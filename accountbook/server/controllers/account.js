@@ -1,25 +1,7 @@
 const knexconfig = require('../knex.config.js')
 const knex = require('knex')(knexconfig.db)
 const common = require('../common/common')
-function translateEle(row) {
-    let week = common.getDateWeekday(row.create_time),
-        day = common.getDay(row.create_time);
-    let ele = {
-        billId: row.bill_id,
-        billClass: row.bill_class,
-        billLabel: row.bill_label,
-        amount: row.amount,
-        amtType: row.amt_type,
-        amtTypeStr: row.amtTypeStr,
-        week: week,
-        day: day,
-        createTime: row.create_time,
-        month: row.month,
-        year: row.year,
-        remark: row.remark
-    }
-    return ele;
-}
+const translate = require('../common/translate')
 module.exports = {
     accountList: async (ctx) => {
         const request = ctx.request.body;
@@ -43,7 +25,8 @@ module.exports = {
                     row['amtTypeStr'] = '收入';
                 }
                 memo.surplus += Number(amount);
-                let ele = translateEle(row);
+                let ele = translate.translateEle(row);
+                console.log(ele);
                 let isOk = false;
                 for (let i = 0, l = memo.dateList.length; i < l; i++) {
                     let item = memo.dateList[i];
@@ -78,11 +61,11 @@ module.exports = {
                 }
                 return memo;
             }, { surplus: 0, monthIncome: 0, monthExpend: 0, dateList: [] })
-            .then(obj => { 
+            .then(obj => {
                 console.log(obj);
                 ctx.response.body = obj;
             })
-            .catch(e => { 
+            .catch(e => {
                 console.error(e);
             })
         return ctx.response.body
@@ -136,8 +119,57 @@ module.exports = {
     },
     editAccount: async (ctx) => {
         const request = ctx.request.body;
+        await knex(knexconfig.accountInfo)
+            .where({
+                open_id: request.openId,
+                bill_id: request.billId
+            })
+            .update({
+                bill_class: request.billClass,
+                bill_label: request.billLabel,
+                amt_type: request.amtType,
+                create_time: request.createTime,
+                amount: request.amount,
+                remark: request.remark,
+                month: request.month,
+                year: request.year
+            })
+            .then(obj => {
+                console.log(obj);
+                ctx.response.body = {
+                    success: true,
+                    message: '修改成功'
+                }
+            })
+            .catch(e => {
+                console.error(e);
+                ctx.response.body = {
+                    success: false,
+                    message: '修改失败'
+                }
+            })
     },
     deleteAccount: async (ctx) => {
         const request = ctx.request.body;
+        await knex(knexconfig.accountInfo)
+            .where({
+                open_id: request.openId,
+                bill_id: request.billId
+            })
+            .del()
+            .then(obj => {
+                console.log(obj);
+                ctx.response.body = {
+                    success: true,
+                    message: '删除成功'
+                }
+            })
+            .catch(e => {
+                console.log(e);
+                ctx.response.body = {
+                    success: false,
+                    message: '删除失败'
+                }
+            })
     }
 }

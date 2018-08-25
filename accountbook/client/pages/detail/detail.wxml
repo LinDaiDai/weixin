@@ -10,11 +10,14 @@
             <view class="flex-wrp" style="height: 300px;flex-direction:column;">
                 <view class="flex-item typeItem">
                     <view class="titile">类型</view>
-                    {{substance.amtTypeStr}}
+                    <picker wx:if="routeType==='确定'" bindchange="bindPickerChange" value="{{amtTypeIndex}}" range="{{amtTypeList}}">
+                        <view class="picker">{{substance.amtTypeStr}}</view>
+                    </picker>
+                    <view wx:else>{{substance.amtTypeStr}}</view>
                 </view>
                 <view class="flex-item typeItem">
                     <view class="titile">金额</view>
-                    <input class="keyInput" value="{{substance.amount}}"  adjust-position="{{false}}" bindinput="bindKeyInput" placeholder="请输入金额" />
+                    <input class="keyInput" value="{{substance.amount}}" adjust-position="{{false}}" bindinput="bindKeyInput" placeholder="请输入金额" />
                     <!-- {{substance.amount}} -->
                 </view>
                 <view class="flex-item typeItem">
@@ -26,21 +29,26 @@
                 </view>
                 <view class="flex-item typeItem clear" style="height: auto;">
                     <view class="titile">备注</view>
-                    <textarea fixed="{{true}}" value="{{substance.remark}}" name="textarea" />
+                    <!-- <input class="keyInput" value="{{substance.remark}}" adjust-position="{{false}}"  placeholder="请输入备注" /> -->
+                    <textarea fixed="{{true}}" value="{{substance.remark}}" name="textarea"  bindinput="bindRemark"/>
                     <!-- {{substance.remark}} -->
                 </view>
             </view>
         </view>
     </view>
-    <view class="footer" wx:if="routeType==='添加'">
-        <button style="background-color: #00BFFF" class="add" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
-    </view>
-    <view class="footer" wx:if="routeType='确定'">
+    <view class="footer" wx:if="{{routeType==='确定'}}">
         <view class="footerItem">
-            <button style="background-color: #00BFFF" hover-class="button-hover" bindtap="clickThis">{{routeType}}</button>
+            <button style="background-color: #00BFFF" hover-class="button-hover" bindtap="clickThis">
+                {{routeType}}
+            </button>
         </view>
         <view class="footerItem">
             <button type="warn" hover-class="button-hover" bindtap="deleteThis">删除</button>
         </view>
+    </view>
+    <view class="footer" wx:else>
+        <button style="background-color: #00BFFF" class="add" hover-class="button-hover" bindtap="clickThis">
+            {{routeType}}
+        </button>
     </view>
 </view>
